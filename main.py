@@ -1,8 +1,6 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from sklearn.naive_bayes import GaussianNB
-from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVC
 from sklearn.model_selection import train_test_split, KFold, cross_val_score
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report, fbeta_score, f1_score
@@ -112,36 +110,6 @@ plt.xlabel('Person ID')
 # Add a legend and show the plot
 plt.legend()
 plt.show()
-
-
-
-#plt.figure(figsize=(8, 6))
-# Create a scatter plot of the predicted labels
-#plt.scatter(range(len(y_pred_nb)), y_pred_nb, c='r', label='Predicted')
-#
-# Create a scatter plot of the true labels
-#plt.scatter(range(len(y_test)), y_test, c='b', label='True')
-#
-#plt.scatter(range(len(y_test + y_pred_nb)),(y_pred_nb | y_test), c='g', label='True & Predicted')
-#
-#plt.yticks([0, 1], ["Risk", "No Risk"])
-#plt.ylabel('Risk')
-#plt.xlabel('Person ID')
-#
-# Add a legend and show the plot
-#plt.legend()
-#plt.show()
-
-
-
-
-
-
-
-
-
-
-
 
 
 
