@@ -38,112 +38,112 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random
 # recall peaks at k = 1
 
 
-# max_score = 0
-# max_k = 0
-# for k in range(1, 100):
-#     knn = KNeighborsClassifier(n_neighbors=k)
-#     knn.fit(X_train, y_train)
-#     score = accuracy_score(knn.predict(X_test), y_test)
-#     if score > max_score:
-#         max_k = k
-#         max_score = score
-#         knn_max=knn
-# print(max_k)
-# knn=knn_max
-# knn.fit(X_train, y_train)
-# y_pred_knn = knn.predict(X_test)
-# print(accuracy_score(y_pred_knn, y_test))
-# print(confusion_matrix(y_test, y_pred_knn))
-#
-#
-#
-# svc = SVC(kernel='rbf', gamma=10)
-# svc.fit(X_train, y_train)
-# y_pred_svc = svc.predict(X_test)
-# ans1 = accuracy_score(y_pred_svc, y_test)
-# print(ans1)
-# # print(confusion_matrix(y_test, y_pred_svc))
+max_score = 0
+max_k = 0
+for k in range(1, 100):
+    knn = KNeighborsClassifier(n_neighbors=k)
+    knn.fit(X_train, y_train)
+    score = accuracy_score(knn.predict(X_test), y_test)
+    if score > max_score:
+        max_k = k
+        max_score = score
+        knn_max=knn
+print(max_k)
+knn=knn_max
+knn.fit(X_train, y_train)
+y_pred_knn = knn.predict(X_test)
+print(accuracy_score(y_pred_knn, y_test))
+print(confusion_matrix(y_test, y_pred_knn))
 
 
 
-# plt.figure(figsize=(8, 6))
-# # Create a scatter plot of the predicted labels
-# plt.scatter(range(len(y_pred_knn)), y_pred_knn, c='r', label='Predicted')
+svc = SVC(kernel='rbf', gamma=10)
+svc.fit(X_train, y_train)
+y_pred_svc = svc.predict(X_test)
+ans1 = accuracy_score(y_pred_svc, y_test)
+print(ans1)
+# print(confusion_matrix(y_test, y_pred_svc))
+
+
+
+plt.figure(figsize=(8, 6))
+# Create a scatter plot of the predicted labels
+plt.scatter(range(len(y_pred_knn)), y_pred_knn, c='r', label='Predicted')
+
+# Create a scatter plot of the true labels
+plt.scatter(range(len(y_test)), y_test, c='b', label='True')
+
+plt.scatter(range(len(y_test + y_pred_knn)),(y_pred_knn | y_test), c='g', label='True & Predicted')
+
+plt.yticks([0, 1], ["Risk", "No Risk"])
+plt.ylabel('Risk')
+plt.xlabel('Person ID')
+
+# Add a legend and show the plot
+plt.legend()
+plt.show()
+
+
+
+
+
+plt.figure(figsize=(8, 6))
+# Create a scatter plot of the predicted labels
+plt.scatter(range(len(y_pred_svc)), y_pred_svc, c='r', label='Predicted')
 #
-# # Create a scatter plot of the true labels
-# plt.scatter(range(len(y_test)), y_test, c='b', label='True')
+# Create a scatter plot of the true labels
+plt.scatter(range(len(y_test)), y_test, c='b', label='True')
 #
-# plt.scatter(range(len(y_test + y_pred_knn)),(y_pred_knn | y_test), c='g', label='True & Predicted')
+plt.scatter(range(len(y_test + y_pred_svc)),(y_pred_svc | y_test), c='g', label='True & Predicted')
 #
-# plt.yticks([0, 1], ["Risk", "No Risk"])
-# plt.ylabel('Risk')
-# plt.xlabel('Person ID')
+plt.yticks([0, 1], ["Risk", "No Risk"])
+plt.ylabel('Risk')
+plt.xlabel('Person ID')
 #
-# # Add a legend and show the plot
-# plt.legend()
-# plt.show()
-#
-#
-#
-#
-#
-# plt.figure(figsize=(8, 6))
-# # Create a scatter plot of the predicted labels
-# plt.scatter(range(len(y_pred_svc)), y_pred_svc, c='r', label='Predicted')
-# #
-# # Create a scatter plot of the true labels
-# plt.scatter(range(len(y_test)), y_test, c='b', label='True')
-# #
-# plt.scatter(range(len(y_test + y_pred_svc)),(y_pred_svc | y_test), c='g', label='True & Predicted')
-# #
-# plt.yticks([0, 1], ["Risk", "No Risk"])
-# plt.ylabel('Risk')
-# plt.xlabel('Person ID')
-# #
-# # Add a legend and show the plot
-# plt.legend()
-# plt.show()
-#
-#
-#
-#
-#
-#
-# results_table = pd.DataFrame(columns=['models', 'fpr', 'tpr', 'auc'])
-#
-# predictions = { 'SVC': y_pred_svc, 'KNN': y_pred_knn }
-#
-# for key in predictions:
-#     fpr, tpr, _ = roc_curve(y_test, predictions[key])
-#     auc = roc_auc_score(y_test, predictions[key])
-#     results_table = results_table.append({'models': key,
-#                                           'fpr': fpr,
-#                                           'tpr': tpr,
-#                                           'auc': auc}, ignore_index=True)
-#
-# results_table.set_index('models', inplace=True)
-#
-# print(results_table)
-#
-# fig = plt.figure(figsize=(8, 6))
-#
-# for i in results_table.index:
-#      plt.plot(results_table.loc[i]['fpr'],
-#             results_table.loc[i]['tpr'],
-#             label="{}, AUC={:.3f}".format(i, results_table.loc[i]['auc']))
-#
-# plt.plot([0, 1], [0, 1], color='black', linestyle='--')
-#
-# plt.xticks(np.arange(0.0, 1.1, step=0.1))
-# plt.xlabel("False Positive Rate", fontsize=15)
-#
-# plt.yticks(np.arange(0.0, 1.1, step=0.1))
-# plt.ylabel("True Positive Rate", fontsize=15)
-#
-# plt.title('ROC Curve Analysis', fontweight='bold', fontsize=15)
-# plt.legend(prop={'size': 13}, loc='lower right')
-#
-# plt.show()
+# Add a legend and show the plot
+plt.legend()
+plt.show()
+
+
+
+
+
+
+results_table = pd.DataFrame(columns=['models', 'fpr', 'tpr', 'auc'])
+
+predictions = { 'SVC': y_pred_svc, 'KNN': y_pred_knn }
+
+for key in predictions:
+    fpr, tpr, _ = roc_curve(y_test, predictions[key])
+    auc = roc_auc_score(y_test, predictions[key])
+    results_table = results_table.append({'models': key,
+                                          'fpr': fpr,
+                                          'tpr': tpr,
+                                          'auc': auc}, ignore_index=True)
+
+results_table.set_index('models', inplace=True)
+
+print(results_table)
+
+fig = plt.figure(figsize=(8, 6))
+
+for i in results_table.index:
+     plt.plot(results_table.loc[i]['fpr'],
+            results_table.loc[i]['tpr'],
+            label="{}, AUC={:.3f}".format(i, results_table.loc[i]['auc']))
+
+plt.plot([0, 1], [0, 1], color='black', linestyle='--')
+
+plt.xticks(np.arange(0.0, 1.1, step=0.1))
+plt.xlabel("False Positive Rate", fontsize=15)
+
+plt.yticks(np.arange(0.0, 1.1, step=0.1))
+plt.ylabel("True Positive Rate", fontsize=15)
+
+plt.title('ROC Curve Analysis', fontweight='bold', fontsize=15)
+plt.legend(prop={'size': 13}, loc='lower right')
+
+plt.show()
 
 
 
