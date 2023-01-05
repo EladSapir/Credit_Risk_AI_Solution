@@ -65,13 +65,6 @@ print(ans1)
 # print(confusion_matrix(y_test, y_pred_svc))
 
 
-#nb = GaussianNB()
-#nb.fit(X_train, y_train)
-#y_pred_nb = nb.predict(X_test)
-#ans2 = accuracy_score(y_pred_nb, y_test)
-#print(ans2)
-# print(confusion_matrix(y_test, y_pred_nb))
-
 
 plt.figure(figsize=(8, 6))
 # Create a scatter plot of the predicted labels
