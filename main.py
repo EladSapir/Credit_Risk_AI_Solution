@@ -105,82 +105,82 @@ print('\n')
 ######################### SVC ####################
 
 
+
+
+
+plt.figure(figsize=(8, 6))
+# Create a scatter plot of the predicted labels
+plt.scatter(range(len(y_pred_knn)), y_pred_knn, c='r', label='Predicted')
+
+# Create a scatter plot of the true labels
+plt.scatter(range(len(y_test)), y_test, c='b', label='True')
+
+plt.scatter(range(len(y_test + y_pred_knn)), (y_pred_knn | y_test), c='g', label='True & Predicted')
+
+plt.yticks([0, 1], ["Risk", "No Risk"])
+plt.ylabel('Risk')
+plt.xlabel('Person ID')
+
+# Add a legend and show the plot
+plt.legend()
+plt.show()
+
+
+
+plt.figure(figsize=(8, 6))
+# Create a scatter plot of the predicted labels
+plt.scatter(range(len(y_pred_svc)), y_pred_svc, c='r', label='Predicted')
 #
+# Create a scatter plot of the true labels
+plt.scatter(range(len(y_test)), y_test, c='b', label='True')
 #
+plt.scatter(range(len(y_test + y_pred_svc)), (y_pred_svc | y_test), c='g', label='True & Predicted')
 #
-# plt.figure(figsize=(8, 6))
-# # Create a scatter plot of the predicted labels
-# plt.scatter(range(len(y_pred_knn)), y_pred_knn, c='r', label='Predicted')
+plt.yticks([0, 1], ["Risk", "No Risk"])
+plt.ylabel('Risk')
+plt.xlabel('Person ID')
 #
-# # Create a scatter plot of the true labels
-# plt.scatter(range(len(y_test)), y_test, c='b', label='True')
-#
-# plt.scatter(range(len(y_test + y_pred_knn)), (y_pred_knn | y_test), c='g', label='True & Predicted')
-#
-# plt.yticks([0, 1], ["Risk", "No Risk"])
-# plt.ylabel('Risk')
-# plt.xlabel('Person ID')
-#
-# # Add a legend and show the plot
-# plt.legend()
-# plt.show()
-#
-#
-#
-# plt.figure(figsize=(8, 6))
-# # Create a scatter plot of the predicted labels
-# plt.scatter(range(len(y_pred_svc)), y_pred_svc, c='r', label='Predicted')
-# #
-# # Create a scatter plot of the true labels
-# plt.scatter(range(len(y_test)), y_test, c='b', label='True')
-# #
-# plt.scatter(range(len(y_test + y_pred_svc)), (y_pred_svc | y_test), c='g', label='True & Predicted')
-# #
-# plt.yticks([0, 1], ["Risk", "No Risk"])
-# plt.ylabel('Risk')
-# plt.xlabel('Person ID')
-# #
-# # Add a legend and show the plot
-# plt.legend()
-# plt.show()
-#
-#
-#
-# results_table = pd.DataFrame(columns=['models', 'fpr', 'tpr', 'auc'])
-#
-# predictions = {'SVC': y_pred_svc, 'KNN': y_pred_knn}
-#
-# for key in predictions:
-#     fpr, tpr, _ = roc_curve(y_test, predictions[key])
-#     auc = roc_auc_score(y_test, predictions[key])
-#     results_table = results_table.append({'models': key,
-#                                           'fpr': fpr,
-#                                           'tpr': tpr,
-#                                           'auc': auc}, ignore_index=True)
-#
-# results_table.set_index('models', inplace=True)
-#
-# print(results_table)
-#
-# fig = plt.figure(figsize=(8, 6))
-#
-# for i in results_table.index:
-#     plt.plot(results_table.loc[i]['fpr'],
-#              results_table.loc[i]['tpr'],
-#              label="{}, AUC={:.3f}".format(i, results_table.loc[i]['auc']))
-#
-# plt.plot([0, 1], [0, 1], color='black', linestyle='--')
-#
-# plt.xticks(np.arange(0.0, 1.1, step=0.1))
-# plt.xlabel("False Positive Rate", fontsize=15)
-#
-# plt.yticks(np.arange(0.0, 1.1, step=0.1))
-# plt.ylabel("True Positive Rate", fontsize=15)
-#
-# plt.title('ROC Curve Analysis', fontweight='bold', fontsize=15)
-# plt.legend(prop={'size': 13}, loc='lower right')
-#
-# plt.show()
+# Add a legend and show the plot
+plt.legend()
+plt.show()
+
+
+
+results_table = pd.DataFrame(columns=['models', 'fpr', 'tpr', 'auc'])
+
+predictions = {'SVC': y_pred_svc, 'KNN': y_pred_knn}
+
+for key in predictions:
+    fpr, tpr, _ = roc_curve(y_test, predictions[key])
+    auc = roc_auc_score(y_test, predictions[key])
+    results_table = results_table.append({'models': key,
+                                          'fpr': fpr,
+                                          'tpr': tpr,
+                                          'auc': auc}, ignore_index=True)
+
+results_table.set_index('models', inplace=True)
+
+print(results_table)
+
+fig = plt.figure(figsize=(8, 6))
+
+for i in results_table.index:
+    plt.plot(results_table.loc[i]['fpr'],
+             results_table.loc[i]['tpr'],
+             label="{}, AUC={:.3f}".format(i, results_table.loc[i]['auc']))
+
+plt.plot([0, 1], [0, 1], color='black', linestyle='--')
+
+plt.xticks(np.arange(0.0, 1.1, step=0.1))
+plt.xlabel("False Positive Rate", fontsize=15)
+
+plt.yticks(np.arange(0.0, 1.1, step=0.1))
+plt.ylabel("True Positive Rate", fontsize=15)
+
+plt.title('ROC Curve Analysis', fontweight='bold', fontsize=15)
+plt.legend(prop={'size': 13}, loc='lower right')
+
+plt.show()
 
 ######                     KNN                   ###########################
 
