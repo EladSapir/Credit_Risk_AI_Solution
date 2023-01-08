@@ -8,8 +8,7 @@ from sklearn.metrics import accuracy_score, confusion_matrix, classification_rep
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import roc_curve, roc_auc_score
 
-
-df = pd.read_csv("german_credit_data.csv", index_col=0)
+df = pd.read_csv("Database.csv", index_col=0)
 
 for col in ['Saving accounts', 'Checking account']:
     df[col].fillna('none', inplace=True)
@@ -44,17 +43,14 @@ max_score = 0
 max_k = 0
 knn_max = 1
 for k in range(1, 100):
-    knn = KNeighborsClassifier(n_neighbors=k)
+    knn = KNeighborsClassifier(n_neighbors=k, metric='manhattan')
     knn.fit(X_train, y_train)
     score = accuracy_score(knn.predict(X_test), y_test)
     if score > max_score:
         max_k = k
         max_score = score
         knn_max = knn
-
-
 print('The best K is ' + str(max_k) + '\n')
-
 
 print('Predicting and Calculating the Precision (Using KNN)...')
 knn = knn_max
