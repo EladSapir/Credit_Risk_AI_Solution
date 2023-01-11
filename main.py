@@ -153,6 +153,9 @@ for key in predictions:
                                           'fpr': fpr,
                                           'tpr': tpr,
                                           'auc': auc}, ignore_index=True)
+    print(fpr)
+    print(tpr)
+    print(auc)
 
 results_table.set_index('models', inplace=True)
 
