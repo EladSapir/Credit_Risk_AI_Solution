@@ -402,21 +402,55 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random
 ################# FIRST PHASE (SVC) - using GridSearchCV
 
 # Use a grid search to tune the hyperparameters of an SVC model
-# param_grid = {'C': [0.1, 1, 10, 100, 1000], 'gamma': [0.001, 0.01, 0.1, 1, 10, 100]}
-# svc = SVC()
-# grid_search = GridSearchCV(svc, param_grid, cv=5)
-# grid_search.fit(X_train, y_train)
-#
-# # Print the best hyperparameters found by the grid search
-# print(grid_search.best_params_)
-#
-# bestVals = list((grid_search.best_params_).values())
-# print(bestVals)
-# svc = SVC(C= bestVals[0], gamma= bestVals[1]) ## the default kernel is 'rbf'
-# svc.fit(X_train, y_train)
-# y_pred_svc = svc.predict(X_test)
-# ans1 = accuracy_score(y_pred_svc, y_test)
-# print(ans1)
+param_grid = {'C': [0.1, 1, 10, 100, 1000]} #'gamma': [0.001, 0.01, 0.1, 1, 10, 100]}
+svc = SVC()
+grid_search = GridSearchCV(svc, param_grid, cv=5)
+grid_search.fit(X_train, y_train)
+
+# Print the best hyperparameters found by the grid search
+print(grid_search.best_params_)
+
+bestVals = list((grid_search.best_params_).values())
+print(bestVals)
+svc = SVC(C= bestVals[0]) ## the default kernel is 'rbf'
+svc.fit(X_train, y_train)
+y_pred_svc = svc.predict(X_test)
+ans1 = accuracy_score(y_pred_svc, y_test)
+print(ans1)
+
+
+param_grid = {'C': [0.1, 1, 10, 100, 1000]} #'gamma': [0.001, 0.01, 0.1, 1, 10, 100]}
+svc = SVC(kernel='linear')
+grid_search = GridSearchCV(svc, param_grid, cv=5)
+grid_search.fit(X_train, y_train)
+
+# Print the best hyperparameters found by the grid search
+print(grid_search.best_params_)
+
+bestVals = list((grid_search.best_params_).values())
+print(bestVals)
+svc = SVC(C= bestVals[0]) ## the default kernel is 'rbf'
+svc.fit(X_train, y_train)
+y_pred_svc = svc.predict(X_test)
+ans1 = accuracy_score(y_pred_svc, y_test)
+print(ans1)
+
+
+param_grid = {'C': [0.1, 1, 10, 100, 1000]} #'gamma': [0.001, 0.01, 0.1, 1, 10, 100]}
+svc = SVC(kernel='sigmoid')
+grid_search = GridSearchCV(svc, param_grid, cv=5)
+grid_search.fit(X_train, y_train)
+
+# Print the best hyperparameters found by the grid search
+print(grid_search.best_params_)
+
+bestVals = list((grid_search.best_params_).values())
+print(bestVals)
+svc = SVC(C= bestVals[0]) ## the default kernel is 'rbf'
+svc.fit(X_train, y_train)
+y_pred_svc = svc.predict(X_test)
+ans1 = accuracy_score(y_pred_svc, y_test)
+print(ans1)
 
 
 ################# SECOND PHASE (SVC) - choosing a function
@@ -427,7 +461,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random
 # y_pred_svc = svc.predict(X_test)
 # ans1 = accuracy_score(y_pred_svc, y_test)
 # print(ans1)
-
+#
 #
 # svc = SVC(kernel='rbf', gamma=1, C = 100)
 # svc.fit(X_train, y_train)
@@ -441,8 +475,4 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random
 # ans1 = accuracy_score(y_pred_svc, y_test)
 # print(ans1)
 
-svc = SVC(kernel='poly', degree= 3, gamma=1, C=10)
-svc.fit(X_train, y_train)
-y_pred_svc = svc.predict(X_test)
-ans1 = accuracy_score(y_pred_svc, y_test)
-print(ans1)
+
