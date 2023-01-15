@@ -411,6 +411,7 @@ grid_search.fit(X_train, y_train)
 print(grid_search.best_params_)
 
 bestVals = list((grid_search.best_params_).values())
+
 print(bestVals)
 svc = SVC(C= bestVals[0]) ## the default kernel is 'rbf'
 svc.fit(X_train, y_train)
