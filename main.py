@@ -70,24 +70,24 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random
 # ######################### KNN ####################
 #
 # ######################### SVC ####################
-# print('Searching for the Best Parameter Values for SVC...')
-# param_grid = {'C': [0.1, 1, 10, 100, 1000], 'gamma': [0.001, 0.01, 0.1, 1, 10, 100]}
-# svc = SVC()
-# grid_search = GridSearchCV(svc, param_grid, cv=5)
-# grid_search.fit(X_train, y_train)
-#
-# # Print the best hyperparameters found by the grid search
-# print('The best values for "C" and "gamma" are: ' + str(grid_search.best_params_) + '\n')
-#
-# bestVals = list((grid_search.best_params_).values())
-#
-# print('Predicting and Calculating the Precision (Using SVC)...')
-# svc = SVC(C= bestVals[0], gamma= bestVals[1], kernel='rbf') ## the default kernel is 'rbf'
-# svc.fit(X_train, y_train)
-# y_pred_svc = svc.predict(X_test)
-# ans1 = accuracy_score(y_pred_svc, y_test)
-#
-# print('SVC Precision: ' + str(round(accuracy_score(y_pred_svc, y_test) * 100, 4)) + ' %\n')
+print('Searching for the Best Parameter Values for SVC...')
+param_grid = {'C': [0.1, 1, 10, 100, 1000], 'gamma': [0.001, 0.01, 0.1, 1, 10, 100]}
+svc = SVC()
+grid_search = GridSearchCV(svc, param_grid, cv=5)
+grid_search.fit(X_train, y_train)
+
+# Print the best hyperparameters found by the grid search
+print('The best values for "C" and "gamma" are: ' + str(grid_search.best_params_) + '\n')
+
+bestVals = list((grid_search.best_params_).values())
+
+print('Predicting and Calculating the Precision (Using SVC)...')
+svc = SVC(C= bestVals[0], gamma= bestVals[1], kernel='rbf') ## the default kernel is 'rbf'
+svc.fit(X_train, y_train)
+y_pred_svc = svc.predict(X_test)
+ans1 = accuracy_score(y_pred_svc, y_test)
+
+print('SVC Precision: ' + str(round(accuracy_score(y_pred_svc, y_test) * 100, 4)) + ' %\n')
 #
 # # confusion matrix calculation
 # confusion_mat_SVC = confusion_matrix(y_test, y_pred_svc)
@@ -419,22 +419,22 @@ y_pred_svc = svc.predict(X_test)
 ans1 = accuracy_score(y_pred_svc, y_test)
 print(ans1)
 
-
-param_grid = {'C': [0.1, 1, 10, 100, 1000]} #'gamma': [0.001, 0.01, 0.1, 1, 10, 100]}
-svc = SVC(kernel='linear')
-grid_search = GridSearchCV(svc, param_grid, cv=5)
-grid_search.fit(X_train, y_train)
-
-# Print the best hyperparameters found by the grid search
-print(grid_search.best_params_)
-
-bestVals = list((grid_search.best_params_).values())
-print(bestVals)
-svc = SVC(C= bestVals[0]) ## the default kernel is 'rbf'
-svc.fit(X_train, y_train)
-y_pred_svc = svc.predict(X_test)
-ans1 = accuracy_score(y_pred_svc, y_test)
-print(ans1)
+#
+# param_grid = {'C': [0.1, 1, 10, 100, 1000]} #'gamma': [0.001, 0.01, 0.1, 1, 10, 100]}
+# svc = SVC(kernel='linear')
+# grid_search = GridSearchCV(svc, param_grid, cv=5)
+# grid_search.fit(X_train, y_train)
+#
+# # Print the best hyperparameters found by the grid search
+# print(grid_search.best_params_)
+#
+# bestVals = list((grid_search.best_params_).values())
+# print(bestVals)
+# svc = SVC(C= bestVals[0]) ## the default kernel is 'rbf'
+# svc.fit(X_train, y_train)
+# y_pred_svc = svc.predict(X_test)
+# ans1 = accuracy_score(y_pred_svc, y_test)
+# print(ans1)
 
 
 param_grid = {'C': [0.1, 1, 10, 100, 1000]} #'gamma': [0.001, 0.01, 0.1, 1, 10, 100]}
