@@ -1,4 +1,4 @@
-#Credit Risk Assessment using KNN and SVM
+# Credit Risk Assessment using KNN and SVM
 In this study, we evaluated the use of K-Nearest Neighbors (KNN) and Support Vector Machines (SVM) for credit risk assessment using a dataset of 2000 individuals from a German bank. The dataset contains information such as income, age, job, and risk.
 
 Our results indicate that both KNN and SVM are effective in predicting credit risk, with KNN achieving an accuracy of 90.1857% and SVM achieving an accuracy of 92.5729%.
