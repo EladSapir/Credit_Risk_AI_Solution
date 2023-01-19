@@ -14,5 +14,8 @@ In each of the graph windows that opened, you can use the zoom feature to see a 
 Our results show that both KNN and SVM are effective in predicting credit risk, with KNN achieving an accuracy of 90.1857% and SVM achieving an accuracy 92.5729% Overall, our work highlights the potential of KNN and SVM for credit risk assessment and demonstrates the importance of considering multiple machine learning algorithms in this task.
 
 
+
+
+
 Thank you for visiting our repository. We hope that our research and code will be useful to others in the field of credit risk assessment. 
 If you have any questions or feedback, please feel free to reach out to us.
