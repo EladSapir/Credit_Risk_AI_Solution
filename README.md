@@ -15,5 +15,5 @@ Our results show that both KNN and SVM are effective in predicting credit risk, 
 
 
 # Q & A
-If you have any questions or feedback, please feel free to reach out to us. <br>
+If you have any questions or feedback, please feel free to reach out to us. <br><br><br><br>
 Thank you for visiting our repository. We hope that our research and code will be useful to others in the field of credit risk assessment. 
